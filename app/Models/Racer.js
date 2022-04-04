@@ -1,9 +1,10 @@
 export class Racer
 {
-    constructor(p_name, p_position = 0)
+    constructor(p_name)
     {
         this.name = p_name;
-        this.position = p_position;
+        this.position = 0;
+        this.wins = 0;
     }
 
     go(p_amount)
@@ -16,7 +17,7 @@ export class Racer
         this.position = p_position;
     }
 
-    get Template()
+    get TrackTemplate()
     {
         return `
         <div class="row my-2 bg-dark racetrack">
@@ -24,7 +25,15 @@ export class Racer
                 <span class="text-light" style="position: relative; left: ${0 + 95 * (this.position / 100)}%;">${this.name[0]}</span>
                 <span class="racer-name">${this.name}</span>
             </div>
-        </div>
-        `;
+        </div>`;
+    }
+
+    get LeaderboardTemplate()
+    {
+        return `
+        <div class="row justify-content-around my-3 fs-4">
+            <div class="col-3">${this.name}</div>
+            <div class="col-3">${this.wins}</div>
+        </div>`;
     }
 }

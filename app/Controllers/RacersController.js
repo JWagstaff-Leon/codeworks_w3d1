@@ -3,10 +3,18 @@ import { racerService } from "../Services/RacerService.js";
 
 let _raceInterval = null;
 
+function _drawLeaderboard()
+{
+    const sortedRacers = [...appState.racers].sort((a, b) => {return b.wins - a.wins;});
+    let template = "";
+    sortedRacers.forEach(v => template += v.LeaderboardTemplate);
+    document.getElementById("leaderboard").innerHTML = template;
+}
+
 function _drawRacers()
 {
     let template = "";
-    appState.racers.forEach(v => template += v.Template);
+    appState.racers.forEach(v => template += v.TrackTemplate);
     document.getElementById("racers").innerHTML = template;
 }
 
@@ -39,7 +47,9 @@ function _checkWinner()
     if(winner !== null)
     {
         _stopRace();
+        racerService.addWin(winner);
         document.getElementById("winners-circle").innerText = `${winner.name} is the winner!`;
+        _drawLeaderboard();
     }
 }
 
@@ -116,6 +126,7 @@ export class RacersController
             racerService.addRacer(p_name);
             this.endRace()
             _drawRacers();
+            _drawLeaderboard();
         }
     }
 }

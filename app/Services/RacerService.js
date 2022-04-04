@@ -22,6 +22,11 @@ class RacerService
             appState.racers.push(new Racer(p_name));
         }
     }
+    
+    addWin(p_winner)
+    {
+        p_winner.wins += 1;
+    }
 }
 
 export const racerService = new RacerService();
