@@ -114,8 +114,7 @@ export class RacersController
         if(p_name)
         {
             racerService.addRacer(p_name);
-            _resetRace();
-            _stopRace();
+            this.endRace()
             _drawRacers();
         }
     }
