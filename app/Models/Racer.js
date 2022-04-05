@@ -22,8 +22,8 @@ export class Racer
         return `
         <div class="row my-2 bg-dark racetrack">
             <div class="col-12 d-flex align-items-center" style="position: relative">
+                <span class="racer-name" style="position: absolute">${this.name}</span>
                 <span class="text-light" style="position: relative; left: ${0 + 95 * (this.position / 100)}%;">${this.name[0]}</span>
-                <span class="racer-name">${this.name}</span>
             </div>
         </div>`;
     }
